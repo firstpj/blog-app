@@ -11,6 +11,8 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 20_231_102_224_118) do
+  enable_extension 'plpgsql'
+  
   create_table 'comments', force: :cascade do |t|
     t.text 'text'
     t.integer 'user_id', null: false
