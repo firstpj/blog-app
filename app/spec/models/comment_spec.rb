@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-<<<<<< Blog-app---Views
   it 'is valid with a user and a post' do
     user = User.create(name: 'Tom', post_counter: 0)
     post = user.posts.create(title: 'My Post', comments_counter: 0, likes_counter: 0)
@@ -28,11 +27,8 @@ RSpec.describe Comment, type: :model do
     user = User.create(name: 'Tom', post_counter: 1)
     post = user.posts.create(title: 'My Post', comments_counter: 0, likes_counter: 0)
     comment = post.comments.create(user:, text: 'Nice post!')
-
     comment.increment_post_comments_counter
-
     post.reload
     expect(post.comments_counter).to eq(2)
-
   end
 end
