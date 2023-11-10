@@ -1,0 +1,11 @@
+<%= stylesheet_link_tag('index') %>
+<div class="container">
+  <% @posts.each do |post| %>
+    <div class="post">
+      <h2><%= post.title %></h2>
+      <% post.comments.each do |comment| %>
+        <p><%= comment.body %></p>
+      <% end %>
+    </div>
+  <% end %>
+</div>

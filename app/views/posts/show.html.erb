@@ -1,0 +1,12 @@
+<%= stylesheet_link_tag('index') %>
+<div class="container">
+  <div class="user-post">
+    <h3>Post #<%= @post.id %> by <%= @post.user.username %></h3>
+    <p><%= @post.body %></p>
+  </div>
+  <div>
+    <% @post.comments.each do |comment| %>
+      <p><%= comment.body %> by <%= comment.user.username %></p>
+    <% end %>
+  </div>
+</div>
