@@ -24,6 +24,5 @@ RSpec.describe Like, type: :model do
 
     post.reload
     expect(post.likes_counter).to eq(2)
-
   end
 end
