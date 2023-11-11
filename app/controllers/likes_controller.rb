@@ -4,6 +4,7 @@ class LikesController < ApplicationController
     @user = current_user
     @like = Like.new(user_id: @user.id, post_id: @post.id)
     return unless @like.save
+
     redirect_to user_post_path(@user.id, @post)
   end
 end
