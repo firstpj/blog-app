@@ -1,11 +1,29 @@
-<div class="postContainer borderRadio">
-<%= render partial: "posts/post_head", locals:{user:@user,post:@post_item,id:@id}%>
-<div class="postDescription">
-<%= @post_item.text%>
+<div class="posts-show">
+<div class="post-show">
+
+<div class="post-title-show">
+<h1><%= @post.title %></h1>
+
+<div class="post-interact">
+<p>comments: <%= @post.comments_counter %></p>
+<p>likes: <%= @post.likes_counter %></p>
 </div>
 </div>
-<div class="comments">
-<% @post_item.show_post_comments(@post_item,all_comments:true).each do |comment|%>
-<%= render partial: "comments/comment", locals: {comment:comment, user:@user.find_user(comment.user_id)}%>
-<%end%>
+
+<div>
+<p><%= @post.text %></p>
+</div>
+
+</div>
+<div class= "shared-comment-cont">
+<div class="shared-comments">
+<%= link_to "Add Comment", new_user_post_comment_path(@user, @post) %>
+<%= form_with url: user_post_likes_path(@post.author.id, @post.id), method: :post do |form| %>
+<%= form.submit 'Like' %>
+<% end %>
+</div>
+<h2>Comments</h2>
+<%= render "shared/comments", comments:@comments %>
+</div>
+
 </div>
