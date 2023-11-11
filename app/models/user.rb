@@ -1,9 +1,9 @@
+# app/models/user.rb
 class User < ApplicationRecord
-  has_many :posts, foreign_key: 'author_id', dependent: :destroy, counter_cache: true
-  has_many :comments, dependent: :destroy
-  has_many :likes, dependent: :destroy
+  has_many :posts
+  has_many :comments
 
-  def most_recent_posts
-    posts.order(created_at: :desc).limit(3)
+  def most_recent_posts(limit = 3)
+    posts.order(created_at: :desc).limit(limit)
   end
 end

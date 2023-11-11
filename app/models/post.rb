@@ -1,15 +1,10 @@
+# app/models/post.rb
 class Post < ApplicationRecord
-  belongs_to :author, class_name: 'User', foreign_key: 'author_id', counter_cache: :posts_counter
-  has_many :likes, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  belongs_to :user
+  has_many :comments
+  has_many :likes
 
-  after_save :increment_user_posts_counter
-
-  def recent_comments
-    comments.order(created_at: :desc).limit(5)
-  end
-
-  def increment_user_posts_counter
-    author.increment!(:posts_counter)
+  def recent_comments(limit = 5)
+    comments.order(created_at: :desc).limit(limit)
   end
 end
