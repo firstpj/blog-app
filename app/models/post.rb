@@ -7,13 +7,15 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  before_create :increment_user_posts_counter
+  after_save :increment_user_posts_counter
 
-  def recent_comments(limit = 5)
-    comments.order(created_at: :desc).limit(limit)
+  def recent_comments
+    comments.order(created_at: :desc).limit(5)
   end
 
+  private
+
   def increment_user_posts_counter
-    author.increment!(:posts_counter) if author.present?
+    author.increment!(:posts_counter) 
   end
 end
