@@ -13,3 +13,10 @@ class Post < ApplicationRecord
     author.increment!(:posts_counter)
   end
 end
+
+# app/models/post.rb
+class Post < ApplicationRecord
+  belongs_to :user
+  has_many :comments
+  has_many :likes
+end

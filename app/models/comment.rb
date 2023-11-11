@@ -8,3 +8,9 @@ class Comment < ApplicationRecord
     post.increment!(:comments_counter)
   end
 end
+
+# app/models/comment.rb
+class Comment < ApplicationRecord
+  belongs_to :user
+  belongs_to :post
+end

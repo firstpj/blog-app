@@ -1,0 +1,6 @@
+# app/views/posts/new.html.erb
+<%= form_with(model: Post.new, url: posts_path) do |form| %>
+  <%= form.label :content %>
+  <%= form.text_area :content %>
+  <%= form.submit "Create Post" %>
+<% end %>

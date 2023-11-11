@@ -8,3 +8,9 @@ class Like < ApplicationRecord
     post.increment!(:likes_counter)
   end
 end
+
+# app/models/like.rb
+class Like < ApplicationRecord
+  belongs_to :user
+  belongs_to :post
+end

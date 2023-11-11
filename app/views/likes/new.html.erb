@@ -1,0 +1,5 @@
+# app/views/likes/new.html.erb
+<%= form_with(model: Like.new, url: likes_path) do |form| %>
+  <%= form.hidden_field :post_id, value: @post.id %>
+  <%= form.submit "Like" %>
+<% end %>
