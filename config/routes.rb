@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :res_tfuls
   devise_for :users
   resources :users, only: [:index, :show] do
     resources :posts, only: [:index, :show, :new, :create] do
