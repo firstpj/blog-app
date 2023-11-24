@@ -11,6 +11,7 @@ class PostsController < ApplicationController
     if @post
       @user = @post.author
       @comments = @post.comments
+      flash[:alert] = 'Post not found'
     else
       flash[:alert] = 'Post not found'
       redirect_to user_posts_path(params[:user_id])
