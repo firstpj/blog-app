@@ -15,10 +15,19 @@
 </div>
 
 </div>
-
 <div class="">
 <h2>Comments</h2>
 <%= render "shared/comments", comments:@comments %>
 </div>
 
+<div class= "shared-comment-cont">
+<div class="shared-comments">
+<%= link_to "Add Comment", new_user_post_comment_path(@user, @post) %>
+<%= form_with url: user_post_likes_path(@post.author.id, @post.id), method: :post do |form| %>
+<%= form.submit 'Like' %>
+<% end %>
+</div>
+<h2>Comments</h2>
+<%= render "shared/comments", comments:@comments %>
+</div>
 </div>

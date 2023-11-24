@@ -5,6 +5,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id(params[:id])
-    @recent_posts = @user.most_recent_posts
+    if @user
+      @recent_posts = @user.most_recent_posts
+    else
+      flash[:alert] = 'User not found'
+      redirect_to root_path
+    end
   end
 end

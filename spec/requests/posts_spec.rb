@@ -1,5 +1,4 @@
 require 'rails_helper'
-
 RSpec.describe 'Posts controller', type: :request do
   describe 'GET /users/user_id/posts' do
     before do

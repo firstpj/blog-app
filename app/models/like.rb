@@ -2,7 +2,7 @@ class Like < ApplicationRecord
   belongs_to :user
   belongs_to :post
 
-  after_save :increment_likes_counter, on: :create
+  after_create :increment_likes_counter
 
   def increment_likes_counter
     post.increment!(:likes_counter)
