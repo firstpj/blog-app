@@ -1,0 +1,7 @@
+<!-- Placeholder for index -->
+<div class="main">
+  <h1>List of all users:</h1>
+  <% @users.each do |user| %>
+    <%= render partial: 'users/user_details', locals: { user: user } %>
+  <% end %>
+</div>
