@@ -1,39 +1,51 @@
 class CommentsController < ApplicationController
-  def new
-    @user = User.find(params[:user_id])
-    @post = Post.find(params[:post_id])
+  before_action :set_user
+  before_action :set_post
+  before_action :set_comment, only: [:show]
 
-    @comment = Comment.new
+  def new
+    @comment = @post.comments.new
   end
 
   def create
-    @user = current_user
-    @user = User.find(params[:user_id])
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.new(comment_params)
-    @comment.user = @user
+    @comment = current_user.comments.build(comment_params.merge(post: @post))
     if @comment.save
-      redirect_to user_post_path(@user, @post), notice: 'Comment created!'
-
+      redirect_to user_post_path(@post.author, @post)
     else
-      flash.now[:errors] = 'Invalid comment!'
       render :new
     end
   end
 
-  def destroy
-    @commentdel = Comment.includes(:post).find(params[:id])
-    @post = @commentdel.post
+  def edit
+    @comment = @post.comments.find(params[:id])
+  end
 
-    if @commentdel.destroy
-      flash[:notice] = 'Comment deleted!'
+  def update
+    @comment = @post.comments.find(params[:id])
+    if @comment.update(comment_params)
+      redirect_to user_post_path(@post.author, @post), notice: 'Comment updated successfully'
     else
-      flash.now[:errors] = 'Unable to delete comment!'
+      render :edit
     end
-    redirect_to user_post_path(@post.user, @post)
+  end
+
+  def show
+    @comments = @post.comments
   end
 
   private
+
+  def set_user
+    @user = User.find(params[:user_id])
+  end
+
+  def set_post
+    @post = @user.posts.find(params[:post_id])
+  end
+
+  def set_comment
+    @comment = @post.comments.find(params[:id])
+  end
 
   def comment_params
     params.require(:comment).permit(:text)

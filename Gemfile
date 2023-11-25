@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
-
+gem 'rubocop', '>= 1.0', '< 2.0'
 ruby '3.2.2'
+gem 'carrierwave', '~> 2.2'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.1.1'
@@ -18,13 +19,16 @@ gem 'puma', '>= 5.0'
 gem 'importmap-rails'
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem 'turbo-rails'
+gem 'turbo-rails', '~> 0.8.1'
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem 'stimulus-rails'
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
+
+# testing
+gem 'rspec'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
@@ -41,17 +45,23 @@ gem 'tzinfo-data', platforms: %i[windows jruby]
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
+# To generate fake data
+gem 'faker'
+
+# To open the browser when running tests
+gem 'launchy'
+
+# To add pagination when there are more posts
+gem 'will_paginate'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem 'capybara'
   gem 'debug', platforms: %i[mri windows]
-  gem 'factory_bot_rails'
-  gem 'rspec-rails'
-  gem 'shoulda-matchers'
-  gem 'will_paginate'
+  gem 'rails-controller-testing'
+  gem 'rspec-rails', '~> 6.0'
 end
 
 group :development do
@@ -67,10 +77,9 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem 'capybara'
   gem 'selenium-webdriver'
-  # gem 'webdrivers'
-  gem 'database_cleaner'
-  gem 'launchy'
 end
-gem 'rails-controller-testing'
-gem 'rubocop', '>= 1.0', '< 2.0'
+# Gemfile
+
+

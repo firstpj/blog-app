@@ -1,28 +1,32 @@
-<div class="posts-show">
-<div class="post-show">
+<!-- Placeholder for show -->
+<div>      
+  <div class="user">
+    <div class= "user-photo">
+      <%= image_tag(@user.photo, alt: @user.name, class: "photo") %>
+      </div>
+      <div class="user-details">
+        <h1><%= @user.name %></h1>
+        <span>No of Posts: <%= @user.posts.count %></span>
+      </div>
+    </div>
+    <button><%= link_to 'Back to Users List', users_path %></button>
+  <div class=bio>
+    <h2>Bio:</h2>
+    <p><%= @user.bio %></p>
 
-<div class="post-title-show">
-<h1><%= @post.title %></h1>
-
-<div class="post-interact">
-<p>comments: <%= @post.comments_counter %></p>
-<p>likes: <%= @post.likes_counter %></p>
-</div>
-</div>
-
-<div>
-<p><%= @post.text %></p>
-</div>
-
-</div>
-<div class= "shared-comment-cont">
-<div class="shared-comments">
-<%= link_to "Add Comment", new_user_post_comment_path(@user, @post) %>
-<%= form_with url: user_post_likes_path(@post.author.id, @post.id), method: :post do |form| %>
-<%= form.submit 'Like' %>
-<% end %>
-</div>
-<h2>Comments</h2>
-<%= render "shared/comments", comments:@comments %>
-</div>
+  </div>
+  <div >
+    <% @user.recent_posts.each do |post| %>
+      <% @post = post %>
+     <div class= "user-posts">
+     <h2><%= link_to "#{post.title}", user_post_path(@user, post) %>
+      </h2>
+      <p><%= post.text %></p>
+      <p class= "comments-likes">Comments: <%= post.comments.count %>, Likes: <%= post.likes.count %> </p>
+    </div>   
+    <% end %>
+  </div>
+  <div class="all-posts-button">
+    <%= link_to "See all posts", user_posts_path(@user) %>
+  </div>
 </div>
